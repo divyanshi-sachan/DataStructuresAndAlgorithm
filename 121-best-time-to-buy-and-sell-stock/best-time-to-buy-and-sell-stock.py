@@ -3,8 +3,8 @@ class Solution:
         minPrice = float('inf')
         maxProfit = 0
         for price in prices:
-            minPrice= min(price,minPrice)
+            minPrice = min(price,minPrice)
             profit = price-minPrice
-            maxProfit = max(maxProfit,profit)
+            maxProfit = max(profit,maxProfit)
         return maxProfit
         
