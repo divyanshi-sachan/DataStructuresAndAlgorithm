@@ -1,32 +1,37 @@
 class Solution:
-    def searchRange(self, nums: List[int], target: int) -> List[int]:
-        return [self.first(nums, target), self.last(nums, target)]
-    def first(self,nums,target):
-        ans= -1
-        start = 0
-        end = len(nums)-1
-        while(start<=end):
-            mid = (start+end)//2
-            if target>nums[mid]:
-                start = mid+1
-            elif target<nums[mid]:
-                end = mid-1
-            else:
-                ans=mid
-                end=mid-1
-        return ans
-    def last(self,nums,target):
-        ans= -1
-        start = 0
-        end = len(nums)-1
-        while start<=end:
-            mid = (start+end)//2
-            if target>nums[mid]:
-                start = mid+1
-            elif target<nums[mid]:
-                end = mid-1
-            else:
-                ans=mid
-                start=mid+1
-        return ans
+    def searchRange(self, nums: list[int], target: int) -> list[int]:
+        n = len(nums)
+        def findFirstOccurence(nums):
+            left = 0
+            right = n-1
+            ans = -1
+            while left<=right:
+                mid = (left+right)//2
+                if nums[mid]<target:
+                    left = mid+1
+                elif nums[mid]>target:
+                    right = mid-1
+                else:
+                    ans = mid
+                    right = mid-1
+            return ans
+        def findLastOccurence(nums):
+            ans = -1
+            left = 0
+            right = n-1
+            while left<=right:
+                mid = (left+right)//2
+                if nums[mid]<target:
+                    left = mid+1
+                elif nums[mid]>target:
+                    right = mid-1
+                else:
+                    ans = mid
+                    left = mid+1
+            return ans
+        first = findFirstOccurence(nums)
+        last = findLastOccurence(nums)
+        return [first,last]
+
+
         
