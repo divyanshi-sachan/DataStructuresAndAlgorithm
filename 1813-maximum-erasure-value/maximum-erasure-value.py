@@ -1,20 +1,18 @@
 class Solution:
-    def maximumUniqueSubarray(self, nums: List[int]) -> int:
-        freq = set()
+    def maximumUniqueSubarray(self, nums: list[int]) -> int:
         left = 0
-        sum1=0
-        max_sum = 0
         n = len(nums)
+        curr_sum = 0
+        max_sum = 0
+        seen = set()
         for right in range(n):
-            while nums[right] in freq:
-                freq.remove(nums[left])
-                sum1-=nums[left]
+            while nums[right] in seen:
+                seen.remove(nums[left])
+                curr_sum-=nums[left]
                 left+=1
-            freq.add(nums[right])
-            sum1+=nums[right]
-            max_sum = max(sum1,max_sum)
+            seen.add(nums[right])
+            curr_sum+=nums[right]
+            max_sum = max(curr_sum,max_sum)
         return max_sum
-
-
 
         
